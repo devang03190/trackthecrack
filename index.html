@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrackTheCrack</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
   <style>
     body {
       margin: 0;
@@ -36,14 +37,14 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px; /* Increased spacing between icons */
       z-index: 1000;
       padding: 10px;
     }
 
     .floating-share img {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       transition: transform 0.2s ease;
     }
@@ -68,26 +69,34 @@
     .inline-share img:hover {
       transform: scale(1.1);
     }
+
+    /* Move Leaflet zoom control to bottom left */
+    .leaflet-control-zoom {
+      bottom: 10px !important;
+      top: auto !important;
+      left: 10px !important;
+      right: auto !important;
+    }
   </style>
 </head>
 <body>
 
   <!-- Floating Share Bar -->
   <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/facebook.png" alt="Facebook">
+    </a>
     <a href="https://wa.me/?text=Check%20this%20out!" target="_blank">
       <img src="social_icons/whatsapp.png" alt="WhatsApp">
     </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
-      <img src="social_icons/facebook.png" alt="Facebook">
+    <a href="https://www.instagram.com/" target="_blank">
+      <img src="social_icons/instagram.png" alt="Instagram">
     </a>
     <a href="https://x.com/" target="_blank">
       <img src="social_icons/x.png" alt="X (Twitter)">
     </a>
     <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/" target="_blank">
       <img src="social_icons/telegram.png" alt="Telegram">
-    </a>
-    <a href="https://www.instagram.com/" target="_blank">
-      <img src="social_icons/instagram.png" alt="Instagram">
     </a>
     <a href="https://www.snapchat.com/add/yourusername" target="_blank">
       <img src="social_icons/snapchat.png" alt="Snapchat">
@@ -103,8 +112,8 @@
     <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
       <img src="social_icons/facebook.png" alt="Facebook">
     </a>
-    <a href="https://x.com/" target="_blank">
-      <img src="social_icons/x.png" alt="X (Twitter)">
+    <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/telegram.png" alt="Telegram">
     </a>
   </div>
 
@@ -116,19 +125,14 @@
   <div id="map"></div>
 
   <footer>
-    Share on WhatsApp | Help make roads safer 🚧
+    Share on WhatsApp | Help make roads safer
   </footer>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     const map = L.map('map', {
-      zoomControl: false // Disable default position
+      zoomControl: true
     }).setView([22.3072, 73.1812], 13); // Default to Gujarat
-
-    // Add zoom control to bottom left
-    L.control.zoom({
-      position: 'bottomleft'
-    }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
