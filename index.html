@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TrackTheCrack</title>
-    <link rel="stylesheet" href="./styles/globals.css" />
-  </head>
-  <body>
-    <h1>TrackTheCrack</h1>
-    <ul>
-      <li>Pothole near Main Street</li>
-      <li>Crack on Highway 27</li>
-      <li>Speedbreaker without sign near Bus Stop</li>
-    </ul>
-    <button>Report New Hazard</button>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrackTheCrack</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Track The Crack</h1>
+    <p>Report road hazards, potholes, water logging, and more!</p>
+  </header>
+
+  <div id="map"></div>
+
+  <footer>
+    Share on WhatsApp | Help make roads safer
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([22.3072, 73.1812], 13); // Default to Gujarat
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Example Marker
+    L.marker([22.3072, 73.1812])
+      .addTo(map)
+      .bindPopup('<b>Example Hazard</b><br>Pothole here!')
+      .openPopup();
+  </script>
+</body>
 </html>
