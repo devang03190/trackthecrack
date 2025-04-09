@@ -6,6 +6,49 @@
   <title>TrackTheCrack</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
+
+    <style>
+  .floating-share {
+    position: fixed;
+    top: 40%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    padding: 10px;
+  }
+
+  .floating-share img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .floating-share img:hover {
+    transform: scale(1.1);
+  }
+
+  .inline-share {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .inline-share img {
+    width: 40px;
+    height: 40px;
+    margin: 0 8px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .inline-share img:hover {
+    transform: scale(1.1);
+  }
+</style>
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
