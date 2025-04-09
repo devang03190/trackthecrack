@@ -6,49 +6,6 @@
   <title>TrackTheCrack</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
-
-    <style>
-  .floating-share {
-    position: fixed;
-    top: 40%;
-    left: 0;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-    padding: 10px;
-  }
-
-  .floating-share img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-  }
-
-  .floating-share img:hover {
-    transform: scale(1.1);
-  }
-
-  .inline-share {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .inline-share img {
-    width: 40px;
-    height: 40px;
-    margin: 0 8px;
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-  }
-
-  .inline-share img:hover {
-    transform: scale(1.1);
-  }
-</style>
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -71,29 +28,55 @@
       padding: 10px;
       background: #eee;
     }
+
+    .floating-share {
+      position: fixed;
+      top: 40%;
+      left: 0;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+      padding: 10px;
+    }
+
+    .floating-share img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .floating-share img:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
 
   <!-- Floating Share Bar -->
-<div class="floating-share">
-  <a href="https://wa.me/?text=Check%20this%20out!" target="_blank"><img src="social_icons/whatsapp.webp" alt="WhatsApp"></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank"><img src="social_icons/facebook.png" alt="Facebook"></a>
-  <a href="https://twitter.com/intent/tweet?url=https://devang03190.github.io/trackthecrack/" target="_blank"><img src="social_icons/twitter.png" alt="Twitter"></a>
-  <a href="https://www.instagram.com/" target="_blank"><img src="social_icons/instagram.png" alt="Instagram"></a>
-  <a href="https://www.snapchat.com/add/yourusername" target="_blank"><img src="social_icons/snapchat.webp" alt="Snapchat"></a>
-  <a href="https://twitter.com/intent/tweet?url=https://devang03190.github.io/trackthecrack/" target="_blank"><img src="social_icons/x.png" alt="X (Twitter)"></a>
-</div>
+  <div class="floating-share">
+    <a href="https://wa.me/?text=Check%20this%20out!" target="_blank">
+      <img src="social_icons/whatsapp.webp" alt="WhatsApp">
+    </a>
+    <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/&text=Check%20this%20out!" target="_blank">
+      <img src="social_icons/telegram.png" alt="Telegram">
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/facebook.png" alt="Facebook">
+    </a>
+    <a href="https://twitter.com/intent/tweet?url=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/twitter.png" alt="Twitter">
+    </a>
+    <a href="https://www.instagram.com/" target="_blank">
+      <img src="social_icons/instagram.png" alt="Instagram">
+    </a>
+    <a href="https://www.snapchat.com/add/yourusername" target="_blank">
+      <img src="social_icons/snapchat.webp" alt="Snapchat">
+    </a>
+  </div>
 
-<!-- Inline Share Buttons -->
-<div class="inline-share">
-  <p>Share this page:</p>
-  <a href="https://wa.me/?text=Check%20this%20out!" target="_blank"><img src="social_icons/whatsapp.webp" alt="WhatsApp"></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank"><img src="social_icons/facebook.png" alt="Facebook"></a>
-  <a href="https://twitter.com/intent/tweet?url=https://devang03190.github.io/trackthecrack/" target="_blank"><img src="social_icons/twitter.png" alt="Twitter"></a>
-</div>
-
-  
   <header>
     <h1>Track The Crack</h1>
     <p>Report road hazards, potholes, water logging, and more!</p>
@@ -102,7 +85,7 @@
   <div id="map"></div>
 
   <footer>
-    Share on WhatsApp | Help make roads safer
+    Help make roads safer
   </footer>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
