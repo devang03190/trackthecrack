@@ -1,73 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TrackTheCrack</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <meta charset="UTF-8">
+  <title>Track The Crack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
+      height: 100%;
+      overflow: hidden;
     }
 
     header {
-      background: #222;
+      background-color: #111;
       color: white;
-      padding: 1rem;
       text-align: center;
+      padding: 20px 10px;
     }
 
     #map {
-      height: 90vh;
+      height: calc(100vh - 100px);
       width: 100%;
+      position: relative;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #eee;
+    .leaflet-bottom.leaflet-left {
+      bottom: 10px;
+      left: 10px;
     }
 
-    /* Floating Share Icons */
-    .floating-share {
+    .floating-icons {
       position: fixed;
-      top: 40%;
-      left: 0;
+      top: 50%;
+      left: 10px;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 20px; /* More space between icons */
-      z-index: 1000;
-      padding: 10px;
+      z-index: 999;
     }
 
-    .floating-share img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      transition: transform 0.2s ease;
+    .floating-icons a {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
-    .floating-share img:hover {
-      transform: scale(1.1);
-    }
-
-    /* Zoom control bottom left */
-    .leaflet-bottom.leaflet-left {
-      left: 10px !important;
-      bottom: 10px !important;
-    }
-
-    .leaflet-control-zoom {
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    .floating-icons img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Share Icons -->
-  <div class="floating-share">
+  <header>
+    <h1>Track The Crack</h1>
+    <p>Report road hazards, potholes, water logging, and more!</p>
+  </header>
+
+  <!-- Social Media Floating Icons -->
+  <div class="floating-icons">
     <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
       <img src="social_icons/facebook.png" alt="Facebook">
     </a>
@@ -88,37 +86,28 @@
     </a>
   </div>
 
-  <header>
-    <h1>Track The Crack</h1>
-    <p>Report road hazards, potholes, water logging, and more!</p>
-  </header>
-
   <div id="map"></div>
 
-  <footer>
-    Share on WhatsApp | Help make roads safer
-  </footer>
-
   <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([22.3072, 73.1812], 13); // Gujarat view
+    const map = L.map('map', {
+      zoomControl: false
+    }).setView([22.3072, 73.1812], 11); // Default view on Vadodara
 
-    // Add tile layer
+    // Custom zoom control at bottom left
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Add zoom control manually at bottom-left
-    L.control.zoom({
-      position: 'bottomleft'
-    }).addTo(map);
-
-    // Example marker
-    L.marker([22.3072, 73.1812])
-      .addTo(map)
-      .bindPopup('<b>Example Hazard</b><br>Pothole here!')
+    // Marker Example
+    const marker = L.marker([22.3072, 73.1812]).addTo(map)
+      .bindPopup('Vadodara - Report Here!')
       .openPopup();
   </script>
+
 </body>
 </html>
