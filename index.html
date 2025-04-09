@@ -29,51 +29,81 @@
       background: #eee;
     }
 
-    .floating-share {
+    /* Floating Social Icons */
+    .floating-icons {
       position: fixed;
-      top: 40%;
-      left: 0;
+      top: 50%;
+      left: 10px;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-      padding: 10px;
+      gap: 12px;
+      z-index: 9999;
     }
 
-    .floating-share img {
+    .floating-icons img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .floating-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Inline Share Buttons (optional below map) */
+    .inline-share {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .inline-share img {
       width: 40px;
       height: 40px;
+      margin: 0 8px;
       border-radius: 50%;
       transition: transform 0.2s ease;
     }
 
-    .floating-share img:hover {
+    .inline-share img:hover {
       transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Share Bar -->
-  <div class="floating-share">
-    <a href="https://wa.me/?text=Check%20this%20out!" target="_blank">
-      <img src="social_icons/whatsapp.webp" alt="WhatsApp">
-    </a>
-    <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/&text=Check%20this%20out!" target="_blank">
-      <img src="social_icons/telegram.png" alt="Telegram">
-    </a>
+  <!-- Floating Social Icons - Goal: Make Roads Safer -->
+  <div class="floating-icons">
+    <!-- Facebook -->
     <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
       <img src="social_icons/facebook.png" alt="Facebook">
     </a>
-    <a href="https://twitter.com/intent/tweet?url=https://devang03190.github.io/trackthecrack/" target="_blank">
-      <img src="social_icons/twitter.png" alt="Twitter">
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/?text=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/whatsapp.png" alt="WhatsApp">
     </a>
+
+    <!-- Instagram -->
     <a href="https://www.instagram.com/" target="_blank">
       <img src="social_icons/instagram.png" alt="Instagram">
     </a>
-    <a href="https://www.snapchat.com/add/yourusername" target="_blank">
-      <img src="social_icons/snapchat.webp" alt="Snapchat">
+
+    <!-- X (Twitter) -->
+    <a href="https://x.com/" target="_blank">
+      <img src="social_icons/x.png" alt="X (Twitter)">
+    </a>
+
+    <!-- Telegram -->
+    <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/" target="_blank">
+      <img src="social_icons/telegram.png" alt="Telegram">
+    </a>
+
+    <!-- Snapchat -->
+    <a href="https://www.snapchat.com/" target="_blank">
+      <img src="social_icons/snapchat.png" alt="Snapchat">
     </a>
   </div>
 
@@ -85,16 +115,24 @@
   <div id="map"></div>
 
   <footer>
-    Help make roads safer
+    Share on WhatsApp | Help Make Roads Safer
   </footer>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([22.3072, 73.1812], 13); // Default to Gujarat
+    const map = L.map('map', {
+      zoomControl: false // disable default zoom control
+    }).setView([22.3072, 73.1812], 13); // Default to Gujarat
 
+    // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Add custom zoom control to bottom left
+    L.control.zoom({
+      position: 'bottomleft'
     }).addTo(map);
 
     // Example Marker
