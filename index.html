@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrackTheCrack</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-
   <style>
     body {
       margin: 0;
@@ -30,6 +29,7 @@
       background: #eee;
     }
 
+    /* Floating Share Icons */
     .floating-share {
       position: fixed;
       top: 40%;
@@ -37,14 +37,14 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 20px; /* Increased spacing between icons */
+      gap: 20px; /* More space between icons */
       z-index: 1000;
       padding: 10px;
     }
 
     .floating-share img {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       transition: transform 0.2s ease;
     }
@@ -53,35 +53,20 @@
       transform: scale(1.1);
     }
 
-    .inline-share {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .inline-share img {
-      width: 40px;
-      height: 40px;
-      margin: 0 8px;
-      border-radius: 50%;
-      transition: transform 0.2s ease;
-    }
-
-    .inline-share img:hover {
-      transform: scale(1.1);
-    }
-
-    /* Move Leaflet zoom control to bottom left */
-    .leaflet-control-zoom {
-      bottom: 10px !important;
-      top: auto !important;
+    /* Zoom control bottom left */
+    .leaflet-bottom.leaflet-left {
       left: 10px !important;
-      right: auto !important;
+      bottom: 10px !important;
+    }
+
+    .leaflet-control-zoom {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Share Bar -->
+  <!-- Floating Share Icons -->
   <div class="floating-share">
     <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
       <img src="social_icons/facebook.png" alt="Facebook">
@@ -103,20 +88,6 @@
     </a>
   </div>
 
-  <!-- Inline Share Buttons -->
-  <div class="inline-share">
-    <p>Share this page:</p>
-    <a href="https://wa.me/?text=Check%20this%20out!" target="_blank">
-      <img src="social_icons/whatsapp.png" alt="WhatsApp">
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://devang03190.github.io/trackthecrack/" target="_blank">
-      <img src="social_icons/facebook.png" alt="Facebook">
-    </a>
-    <a href="https://t.me/share/url?url=https://devang03190.github.io/trackthecrack/" target="_blank">
-      <img src="social_icons/telegram.png" alt="Telegram">
-    </a>
-  </div>
-
   <header>
     <h1>Track The Crack</h1>
     <p>Report road hazards, potholes, water logging, and more!</p>
@@ -128,18 +99,22 @@
     Share on WhatsApp | Help make roads safer
   </footer>
 
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map', {
-      zoomControl: true
-    }).setView([22.3072, 73.1812], 13); // Default to Gujarat
+    const map = L.map('map').setView([22.3072, 73.1812], 13); // Gujarat view
 
+    // Add tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    // Example Marker
+    // Add zoom control manually at bottom-left
+    L.control.zoom({
+      position: 'bottomleft'
+    }).addTo(map);
+
+    // Example marker
     L.marker([22.3072, 73.1812])
       .addTo(map)
       .bindPopup('<b>Example Hazard</b><br>Pothole here!')
